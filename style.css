@@ -1,0 +1,469 @@
+/* CODIGO FEITO COM APOIO DE IA */
+
+@charset "utf-8";
+
+:root {
+  /* CORES PRINCIPAIS */
+  --bg-main: #0A0A0A;
+  --red-main: #FF2A2A;
+  --red-dark: #8B0000;
+
+  /* CORES SECUNDÁRIAS */
+  --green-neon: #00FF9C;
+
+  /* UI */
+  --gray-dark: #1A1A1A;
+
+  /* EFEITOS */
+  --glow-red: 0 0 5px var(--red-main), 0 0 10px var(--red-dark);
+  --glow-strong: 0 0 10px var(--red-main);
+}
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* BODY */
+body {
+  background: var(--bg-main);
+  color: var(--red-main);
+  font-family: 'Share Tech Mono', monospace;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+}
+
+/* body::before {
+  content: "";
+  position: fixed;
+  inset: 10px;
+  border: 1px solid var(--red-main);
+  box-shadow: 0 0 10px rgba(255, 42, 42, 0.3);
+
+  pointer-events: none;
+  z-index: 9999;
+
+  animation: pulseBorder 3s ease-in-out infinite;
+} */
+
+/* INTRO */
+.screen {
+  width: 100vw;
+  height: 100vh;
+  padding: 30px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Terminal */
+.terminal {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre;
+}
+
+
+/* HEADER */
+.hud-header {
+  position: relative;
+  width: 100%;
+  padding: 25px 0;
+}
+
+/* LINHA BASE */
+.header-line {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  width: 90%;
+  height: 2px;
+  border-bottom: solid 1.5px var(--red-main);
+  z-index: 1;
+}
+
+/* NAV */
+.hud-nav {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  z-index: 2;
+}
+
+/* ITENS */
+.nav-item {
+  color: var(--red-main);
+  cursor: pointer;
+  letter-spacing: 2px;
+  transition: 0.3s;
+}
+
+/* HOVER */
+.nav-item:hover {
+  color: #FF2A2A;
+  text-shadow: 0 0 8px #FF2A2A;
+}
+
+/* ATIVO */
+.nav-item.active {
+  /* font-size: 1.4em; */
+  padding: 1em;
+  background-color: var(--bg-main);
+  color: #00FF9C;
+  text-shadow: 0 0 10px #00FF9C;
+  position: relative;
+}
+
+
+/* FORMATAÇãO ABA SISTEMAS */
+
+/* CONTAINER DE SKILLS */
+.skills-container {
+  max-width: 1100px;
+  margin: 50px auto 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.system-summary {
+  display: flex;
+  gap: 30px;
+  border-bottom: 1px solid rgba(255, 42, 42, 0.3);
+  padding-bottom: 15px;
+  margin-bottom: 40px;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+}
+
+/* LINHA DA SKILL */
+.skill-row{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding: 15px;
+  border-right: 3px solid transparent;
+  background: rgba(255, 42, 42, 0.02);
+  transition: 0.3s;
+}
+
+.skill-row:hover {
+  background: rgba(255, 42, 42, 0.05);
+  border-right: 3px solid var(--red-main);
+   border-left: 3px solid var(--red-main);
+}
+
+/* ESQUERDA: NOME E MÓDULOS */
+.skill-identity {
+  flex: 1;
+}
+
+.skill-name-wrapper {
+  display: flex;
+  align-items: baseline;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.skill-name {
+  font-size: 1.4rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.skill-rank-label {
+  font-size: 0.7rem;
+  color: var(--green-neon);
+  border: 1px solid var(--green-neon);
+  padding: 1px 6px;
+  font-weight: bold;
+}
+
+.skill-modules {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.module-tag {
+  font-size: 0.7rem;
+  color: rgba(255, 42, 42, 0.8);
+  border-left: 2px solid var(--red-main);
+  padding-left: 8px;
+  text-transform: uppercase;
+  background: rgba(255, 42, 42, 0.05);
+  padding-right: 5px;
+}
+
+/* DIREITA: PORCENTAGEM E BARRA */
+.skill-progress-focus {
+  flex: 0 0 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.progress-info {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.percent-val {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--red-main);
+  text-shadow: var(--glow-red);
+}
+
+.bar-container {
+  width: 250px;
+  height: 8px;
+  background: rgba(255, 42, 42, 0.1);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 42, 42, 0.2);
+}
+
+.bar-fill {
+  height: 100%;
+  background: var(--red-main);
+  box-shadow: 0 0 15px var(--red-main);
+}
+
+.status-indicator {
+  font-size: 0.65rem;
+  margin-top: 8px;
+  opacity: 0.6;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pulse {
+  width: 8px;
+  height: 8px;
+  background: var(--red-main);
+  border-radius: 50%;
+  box-shadow: 0 0 5px var(--red-main);
+  animation: pulseEffect 1.5s infinite;
+}
+
+@keyframes pulseEffect {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.4; }
+}
+
+/* ABA HARDWARE */
+
+/* ROOT DO HARDWARE */
+.hardware-tech-root {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.tech-bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 42, 42, 0.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 42, 42, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  transform: perspective(500px) rotateX(60deg);
+  z-index: -1;
+}
+
+/* HEADER TECH */
+.hw-tech-header {
+  position: absolute;
+  top: 20px;
+  left: 50px;
+  border-left: 4px solid var(--red-main);
+  padding-left: 15px;
+  z-index: 5;
+}
+
+.glitch-box {
+  font-size: 1.2rem;
+  letter-spacing: 3px;
+  background: rgba(255, 42, 42, 0.1);
+  padding: 5px 20px;
+  clip-path: polygon(0 0, 95% 0, 100% 30%, 100% 100%, 5% 100%, 0 70%);
+}
+
+/* CORE CENTRAL */
+.hw-core-wrapper {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  z-index: 10;
+}
+
+.central-hex {
+  position: absolute;
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 160px; 
+  height: 160px;
+  font-size: 1.2em;
+  background: rgba(255, 42, 42, 0.1);
+  border: 2px solid var(--red-main);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 20px rgba(255, 42, 42, 0.4);
+}
+
+.hex-scanner {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: var(--red-main);
+  box-shadow: 0 0 15px var(--red-main);
+  animation: scan 3s infinite linear;
+}
+
+@keyframes scan {
+  0% { top: 25%; }
+  100% { top: 75%; }
+}
+
+/* MODOS DE ATRIBUTO (POSIÇÕES) */
+.hw-node {
+  position: absolute;
+  width: 220px;
+  transition: 0.4s;
+}
+
+.hw-node.top { 
+  top: 0; 
+  left: 50%; 
+  transform: translateX(-50%); 
+}
+
+.hw-node.top-right { 
+    top: 120px; 
+    right: -50px; 
+  }
+
+.hw-node.top-left { 
+    top: 120px; 
+    left: -50px; 
+  }
+
+.hw-node.bottom-right { 
+  bottom: 50px; 
+  right: 20px; 
+}
+
+.hw-node.bottom-left { 
+  bottom: 50px; 
+  left: 20px; 
+}
+
+.node-label {
+  font-size: 1em;
+  color: var(--green-neon);
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.node-value-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 5px 10px;
+  border: 1px solid rgba(255, 42, 42, 0.3);
+}
+
+.node-number {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: var(--red-main);
+}
+
+.mini-dots { display: flex; gap: 3px; }
+.mini-dots span { width: 4px; height: 10px; background: rgba(255, 42, 42, 0.2); }
+
+/* SIDE PANEL */
+.hw-side-panel {
+  position: absolute;
+  right: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 200px;
+  border-right: 2px solid var(--red-main);
+  padding-right: 15px;
+  text-align: right;
+}
+
+.panel-section h3 { font-size: 0.7rem; opacity: 0.5; margin-bottom: 10px; }
+.log-entry { font-size: 0.8rem; margin-bottom: 5px; font-family: monospace; }
+
+/* EFEITO DE GLISH NA PARCIAL DA SENHA */
+
+.glitch-text {
+  position: relative;
+  color: var(--green-neon);
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* camadas do glitch */
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* camada vermelha (desloca) */
+.glitch-text::before {
+  color: #FF2A2A;
+  z-index: -1;
+  animation: glitchTop 1.5s infinite linear alternate-reverse;
+}
+
+/* camada azul/verde */
+.glitch-text::after {
+  color: #00FF9C;
+  z-index: -2;
+  animation: glitchBottom 1.5s infinite linear alternate-reverse;
+}
+
+/* animações */
+@keyframes glitchTop {
+  0%   { transform: translate(0); }
+  20%  { transform: translate(-2px, 2px); }
+  40%  { transform: translate(-2px, -2px); }
+  60%  { transform: translate(2px, 2px); }
+  80%  { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes glitchBottom {
+  0%   { transform: translate(0); }
+  20%  { transform: translate(2px, -2px); }
+  40%  { transform: translate(2px, 2px); }
+  60%  { transform: translate(-2px, -2px); }
+  80%  { transform: translate(-2px, 2px); }
+  100% { transform: translate(0); }
+}
